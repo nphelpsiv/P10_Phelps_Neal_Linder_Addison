@@ -7,7 +7,6 @@ import javax.swing.*;
 
 import asteroids.participants.Asteroid;
 import asteroids.participants.Ship;
-import asteroids.participants.ShipBullet;
 import static asteroids.Constants.*;
 
 /**
@@ -216,9 +215,9 @@ public class Controller implements KeyListener, ActionListener
 
             // Move the participants to their new locations
             pstate.moveParticipants();
-            if (ship != null){
-            	ship.turnLeft();
-            }
+//            if (ship != null){
+//            	ship.turnLeft();
+//            }
 
             // Refresh screen
             display.refresh();

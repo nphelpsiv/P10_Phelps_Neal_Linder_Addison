@@ -23,8 +23,7 @@ public class ShipBullet extends Participant implements AsteroidDestroyer {
 		ship = new Ship(SIZE / 2, SIZE / 2, -Math.PI / 2, controller);
 		setPosition(ship.getXNose(), ship.getYNose());
         //setRotation(this.getRotation());
-        setVelocity(Constants.BULLET_SPEED,0);
-        setDirection(ship.getRotation());
+        setVelocity(Constants.BULLET_SPEED, 0);
         
 
         Path2D.Double poly = new Path2D.Double();
@@ -45,14 +44,13 @@ public class ShipBullet extends Participant implements AsteroidDestroyer {
 		return outline;
 	}
 
-//	@Override
-//	public void collidedWith(Participant p) {
-//		 if (p instanceof ShipDestroyer)
-//	        {
-//	            // Expire the bullet
-//	            Participant.expire(this);
-//	        }
-//		
-//	}
+	@Override
+	public void collidedWith(Participant p) {
+		 if (p instanceof ShipDestroyer)
+	        {
+	            // Expire the bullet
+	            Participant.expire(this);
+	        }	
+	}
 
 }

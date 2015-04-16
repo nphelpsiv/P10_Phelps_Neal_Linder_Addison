@@ -136,9 +136,9 @@ public class Ship extends Participant implements AsteroidDestroyer
     }
 
 	public void shootBullet() {
-        ShipBullet sB = new ShipBullet(150d, 150d, 5d, 0d, 2d);
+        ShipBullet sB = new ShipBullet(150d, 150d, 5d, getRotation(), 1d);
+        sB.setPosition(this.getXNose(), this.getYNose());
+        sB.setDirection(getRotation());
         controller.addParticipant(sB);
-        
-		
 	}
 }
