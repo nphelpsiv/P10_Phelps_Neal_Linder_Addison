@@ -10,6 +10,7 @@ import asteroids.Controller;
 import asteroids.Participant;
 import asteroids.ParticipantCountdownTimer;
 import asteroids.destroyers.AsteroidDestroyer;
+import asteroids.destroyers.ShipDestroyer;
 
 public class ShipBullet extends Participant implements AsteroidDestroyer {
 
@@ -18,7 +19,7 @@ public class ShipBullet extends Participant implements AsteroidDestroyer {
 	private Controller controller;
 	public ShipBullet(double x, double y, double velocity, double direction, double size){
 		
-		this.controller = controller;
+		//this.controller = controller;
 		ship = new Ship(SIZE / 2, SIZE / 2, -Math.PI / 2, controller);
 		setPosition(ship.getXNose(), ship.getYNose());
         //setRotation(this.getRotation());
@@ -46,7 +47,11 @@ public class ShipBullet extends Participant implements AsteroidDestroyer {
 
 	@Override
 	public void collidedWith(Participant p) {
-		// TODO Auto-generated method stub
+		 if (p instanceof ShipDestroyer)
+	        {
+	            // Expire the bullet
+	            Participant.expire(this);
+	        }
 		
 	}
 
