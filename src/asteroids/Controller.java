@@ -210,7 +210,6 @@ public class Controller implements KeyListener, ActionListener
         // Decrement bulletCount
         if (bulletCount > 0)
     		bulletCount--;
-        System.out.println("Decremented to " + bulletCount);
     }
     
     /**
@@ -304,7 +303,6 @@ public class Controller implements KeyListener, ActionListener
         	if (bulletCount < 8){
         		ship.shootBullet();
         		bulletCount++;
-        		System.out.println(bulletCount + " in if loop");
         	}
         }
     }
