@@ -45,14 +45,14 @@ public class ShipBullet extends Participant implements AsteroidDestroyer {
 		return outline;
 	}
 
-	@Override
-	public void collidedWith(Participant p) {
-		 if (p instanceof ShipDestroyer)
-	        {
-	            // Expire the bullet
-	            Participant.expire(this);
-	        }
-		
-	}
+//	@Override
+//	public void collidedWith(Participant p) {
+//		 if (p instanceof ShipDestroyer)
+//	        {
+//	            // Expire the bullet
+//	            Participant.expire(this);
+//	        }
+//		
+//	}
 
 }
