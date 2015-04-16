@@ -34,8 +34,8 @@ public class ShipBullet extends Participant implements AsteroidDestroyer {
         
         // Schedule bullet expiration
         new ParticipantCountdownTimer(this, "expire", Constants.BULLET_DURATION);
-		
 	}
+	
 	@Override
 	protected Shape getOutline() {
 		// TODO Auto-generated method stub
@@ -51,5 +51,19 @@ public class ShipBullet extends Participant implements AsteroidDestroyer {
 	            controller.bulletDestroyed();
 	        }
 	}
+	
+	/**
+     * This method is invoked when a ParticipantCountdownTimer completes
+     * its countdown.
+     */
+    @Override
+    public void countdownComplete (Object payload)
+    {
+        // Expires the bullet after 1 second
+        if (payload.equals("move"))
+        {
+            Participant.expire(this);
+        }
+    }
 
 }

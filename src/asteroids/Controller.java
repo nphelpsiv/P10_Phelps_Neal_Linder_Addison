@@ -203,7 +203,7 @@ public class Controller implements KeyListener, ActionListener
     }
 
     /**
-     * An bullet has been destroyed
+     * A bullet has been destroyed
      */
     public void bulletDestroyed ()
     {
