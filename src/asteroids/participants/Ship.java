@@ -38,7 +38,7 @@ public class Ship extends Participant implements AsteroidDestroyer
         outline = poly;
         
         // Schedule an acceleration in two seconds
-        new ParticipantCountdownTimer(this, "move", 2000);
+//        new ParticipantCountdownTimer(this, "move", 2000);
     }
 
     /**
@@ -109,14 +109,14 @@ public class Ship extends Participant implements AsteroidDestroyer
     @Override
     public void collidedWith (Participant p)
     {
-        if (p instanceof ShipDestroyer)
-        {
-            // Expire the ship from the game
-            Participant.expire(this);
-
-            // Tell the controller the ship was destroyed
-            controller.shipDestroyed();
-        }
+//        if (p instanceof ShipDestroyer)
+//        {
+//            // Expire the ship from the game
+//            Participant.expire(this);
+//
+//            // Tell the controller the ship was destroyed
+//            controller.shipDestroyed();
+//        }
     }
     
     /**
@@ -136,9 +136,6 @@ public class Ship extends Participant implements AsteroidDestroyer
     }
 
 	public void shootBullet() {
-        ShipBullet sB = new ShipBullet(150d, 150d, 5d, getRotation(), 1d);
-        sB.setPosition(this.getXNose(), this.getYNose());
-        sB.setDirection(getRotation());
-        controller.addParticipant(sB);
+		controller.placeBullet();
 	}
 }

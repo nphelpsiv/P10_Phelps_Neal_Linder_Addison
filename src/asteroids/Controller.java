@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import asteroids.participants.Asteroid;
 import asteroids.participants.Ship;
+import asteroids.participants.ShipBullet;
 import static asteroids.Constants.*;
 
 /**
@@ -36,7 +37,7 @@ public class Controller implements KeyListener, ActionListener
     private Display display;
     
     // Number of Bullets from ship
-    private int bulletCount;
+    private int bulletCount = 0;
 
     /**
      * Constructs a controller to coordinate the game and screen
@@ -104,6 +105,18 @@ public class Controller implements KeyListener, ActionListener
         display.setLegend("");
     }
 
+    /**
+     * Place a new bullet at the tip of ship heading in the direction of rotation of the ship.
+     */
+    public void placeBullet (){
+        // Place a new bullet
+        ShipBullet sB = new ShipBullet(150d, 150d, 5d, ship.getRotation(), 1d, this);
+        sB.setPosition(ship.getXNose(), ship.getYNose());
+        sB.setDirection(ship.getRotation());
+        addParticipant(sB);
+        
+    }
+    
     /**
      * Places four asteroids near the corners of the screen. Gives them random
      * velocities and rotations.
@@ -189,6 +202,17 @@ public class Controller implements KeyListener, ActionListener
         }
     }
 
+    /**
+     * An bullet has been destroyed
+     */
+    public void bulletDestroyed ()
+    {
+        // Decrement bulletCount
+        if (bulletCount > 0)
+    		bulletCount--;
+        System.out.println("Decremented to " + bulletCount);
+    }
+    
     /**
      * Schedules a transition m msecs in the future
      */
@@ -277,9 +301,10 @@ public class Controller implements KeyListener, ActionListener
         }
         else if (e.getKeyCode() == KeyEvent.VK_DOWN && ship != null)
         {
-        	if (bulletCount <= 8){
+        	if (bulletCount < 8){
         		ship.shootBullet();
         		bulletCount++;
+        		System.out.println(bulletCount + " in if loop");
         	}
         }
     }
@@ -298,5 +323,9 @@ public class Controller implements KeyListener, ActionListener
     @Override
     public void keyReleased (KeyEvent e)
     {      
+    }
+    
+    public void bulletBack(int b){
+    	bulletCount += b;
     }
 }

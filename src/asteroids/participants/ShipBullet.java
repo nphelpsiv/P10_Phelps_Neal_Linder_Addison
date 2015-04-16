@@ -18,14 +18,11 @@ public class ShipBullet extends Participant implements AsteroidDestroyer {
 	private Ship ship;
 	private Controller controller;
     
-	public ShipBullet(double x, double y, double velocity, double direction, double size){
-		
-		//this.controller = controller;
+	public ShipBullet(double x, double y, double velocity, double direction, double size, Controller controller){
+		this.controller = controller;
 		ship = new Ship(SIZE / 2, SIZE / 2, -Math.PI / 2, controller);
 		setPosition(ship.getXNose(), ship.getYNose());
-        //setRotation(this.getRotation());
         setVelocity(Constants.BULLET_SPEED, 0);
-        
 
         Path2D.Double poly = new Path2D.Double();
         poly.moveTo(1, 1);
@@ -35,8 +32,8 @@ public class ShipBullet extends Participant implements AsteroidDestroyer {
         poly.closePath();
         outline = poly;
         
-        // Schedule an acceleration in two seconds
-        new ParticipantCountdownTimer(this, "move", 2000);
+        // Schedule bullet expiration
+        new ParticipantCountdownTimer(this, "expire", Constants.BULLET_DURATION);
 		
 	}
 	@Override
@@ -51,7 +48,8 @@ public class ShipBullet extends Participant implements AsteroidDestroyer {
 	        {
 	            // Expire the bullet
 	            Participant.expire(this);
-	        }	
+	            controller.bulletDestroyed();
+	        }
 	}
 
 }
