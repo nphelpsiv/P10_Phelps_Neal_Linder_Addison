@@ -17,6 +17,7 @@ public class ShipBullet extends Participant implements AsteroidDestroyer {
 	private Shape outline;
 	private Ship ship;
 	private Controller controller;
+    
 	public ShipBullet(double x, double y, double velocity, double direction, double size){
 		
 		//this.controller = controller;

@@ -34,6 +34,9 @@ public class Controller implements KeyListener, ActionListener
 
     // The game display
     private Display display;
+    
+    // Number of Bullets from ship
+    private int bulletCount;
 
     /**
      * Constructs a controller to coordinate the game and screen
@@ -274,7 +277,10 @@ public class Controller implements KeyListener, ActionListener
         }
         else if (e.getKeyCode() == KeyEvent.VK_DOWN && ship != null)
         {
-        	ship.shootBullet();
+        	if (bulletCount <= 8){
+        		ship.shootBullet();
+        		bulletCount++;
+        	}
         }
     }
 
